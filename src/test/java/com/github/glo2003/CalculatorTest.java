@@ -23,6 +23,35 @@ public class CalculatorTest {
     }
 
     @Test
+    void whenAddingOneNumber_shouldReturnSameNumber(){
+        int result = calculator.add("1");
+        assertEquals(1, result);
+    }
+
+    @Test
+    void whenAddigMultipleNumbers_shouldReturnSum(){
+        int result = calculator.add("1,2");
+        assertEquals(3, result);
+    }
+
+    @Test
+    void whenAddigMultipleNumbersWithSpace_shouldReturnSum(){
+        int result = calculator.add("1, 2");
+        assertEquals(3, result);
+    }
+
+    @Test
+    void whenAddigMultipleNumbersWithNoEmptySpaceAfterComma_shouldReturnSum(){
+        int result = calculator.add("1,");
+        assertEquals(1, result);
+    }
+    @Test
+    void whenAddigMultipleNumbersWithCommaAndEmptySpace_shouldReturnSum(){
+        int result = calculator.add("1, ");
+        assertEquals(1, result);
+    }
+
+    @Test
     void whenNonNumericValues_thenThrowInvalidInput() {
         assertThrows(InvalidNumberFormatException.class,
                 () -> calculator.add("4,a"));
